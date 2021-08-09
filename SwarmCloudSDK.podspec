@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "SwarmCloudSDK"
-  spec.version      = "2.1.0"
+  spec.version      = "2.1.1"
   spec.summary      = "SwarmCloud iOS SDK for Cross-platform P2P Streaming."
 
   # This description is used to generate tags and improve search results.
@@ -82,7 +82,6 @@ Pod::Spec.new do |spec|
   #
 
   spec.vendored_frameworks = 'SwarmCloudSDK.xcframework'
-  # spec.exclude_files = "Classes/Exclude"
 
 
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -124,5 +123,14 @@ Pod::Spec.new do |spec|
 
   # spec.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   # spec.dependency "JSONKit", "~> 1.4"
+
+  spec.static_framework = true
+
+  spec.dependency 'SocketRocket', '~> 0.5'
+  spec.dependency 'CocoaLumberjack', '~> 3.5'
+  spec.dependency 'PINCache', '~> 2.3'
+  spec.dependency 'GCDWebServer', '~> 3.5'
+  spec.dependency 'CocoaAsyncSocket', '~> 7.6'
+  spec.dependency 'WebRTCDatachannel', '= 0.0.1'
 
 end
