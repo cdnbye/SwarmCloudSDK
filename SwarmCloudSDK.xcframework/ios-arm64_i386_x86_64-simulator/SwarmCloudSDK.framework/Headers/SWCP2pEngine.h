@@ -22,6 +22,8 @@ extern NSString *const kP2pEngineDidReceiveStatistics ;
 
 - (NSTimeInterval)bufferedDuration;
 
+- (NSTimeInterval)currentPosition;
+
 @end
 
 @interface SWCP2pEngine : NSObject

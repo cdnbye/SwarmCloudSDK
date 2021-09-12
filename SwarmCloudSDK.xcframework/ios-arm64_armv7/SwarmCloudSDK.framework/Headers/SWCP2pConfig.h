@@ -17,6 +17,12 @@ typedef NS_ENUM(NSInteger, SWCLogLevel) {
     SWCLogLevelError,
 };
 
+typedef NS_ENUM(NSInteger, SWCAnnounceLocation) {
+    SWCAnnounceLocationChina,
+    SWCAnnounceLocationHongkong,
+    SWCAnnounceLocationUSA,
+};
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SWCP2pConfig : NSObject
@@ -30,6 +36,9 @@ NS_ASSUME_NONNULL_BEGIN
 /** The address of tracker server. tracker服务器地址 */
 @property(nonatomic, copy, nullable) NSString *announce;
 
+/** The country enum for tracker server address. tracker服务器地址所在国家的枚举 */
+@property(nonatomic, assign) SWCAnnounceLocation announceLocation;
+
 /** Enable or disable p2p engine. 是否开启P2P，默认true */
 @property(nonatomic, assign) BOOL p2pEnabled;
 
@@ -40,7 +49,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, assign) NSInteger localPortHls;
 
 /** The port for local http server. Mp4本地代理服务器的端口号 */
-@property(nonatomic, assign) NSInteger localPortMp4;
+//@property(nonatomic, assign) NSInteger localPortMp4;
 
 /** Max download timeout for WebRTC datachannel. datachannel下载二进制数据的最大超时时间 */
 @property(nonatomic, assign) NSTimeInterval dcDownloadTimeout;
@@ -70,11 +79,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, copy) NSDictionary *httpHeadersForHls;
 
 /** Not available now. 暂不可用 */
-@property(nonatomic, copy) NSDictionary *httpHeadersForMp4;
+//@property(nonatomic, copy) NSDictionary *httpHeadersForMp4;
 //@property(nonatomic, copy) NSDictionary *httpHeadersForFile;
-
-/** Required while using customized channelId(5 <= length <= 15), recommended to set it as the unique identifier of your organization. 如果使用自定义的channelId，则此字段必须设置，且长度必须大于4个字符并且小于16个字符，建议设置成你所在组织的唯一标识 */
-@property(nonatomic, copy) NSString *channelIdPrefix;
 
 /** Trickle ICE is an optimization of the ICE specification for NAT traversal. NAT穿越时采用rickle ICE策略 */
 @property(nonatomic, assign) BOOL trickleICE;
@@ -95,11 +101,16 @@ NS_ASSUME_NONNULL_BEGIN
 /** All media suffixes that allow P2P transmission. 允许进行P2P传输的所有媒体文件后缀 */
 @property(nonatomic, copy) NSArray<NSString *> *hlsMediaFiles;
 
+/** All media extensions that allow P2P transmission. 允许进行P2P传输的所有媒体文件名后缀 */
+@property(nonatomic, copy) NSArray<NSString *> *hlsMediaFileExtensions;
+
 /** Save logs to the file. 是否将日志持久化到外部存储 */
 @property(nonatomic, assign) BOOL logPersistent;
 
 /** The path to the log files, default is Library/Caches/Logs/ . 日志文件的存储路径，默认路径是 Library/Caches/Logs/ */
 @property(nonatomic, copy) NSString *logFilePath;
+
+@property(nonatomic, copy) NSString *alternativeTrackerIp;
 
 /**
  Create a new instance with default configuration.
