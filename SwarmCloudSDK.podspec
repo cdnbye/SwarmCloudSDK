@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "SwarmCloudSDK"
-  spec.version      = "2.3.1"
+  spec.version      = "2.3.3"
   spec.summary      = "SwarmCloud iOS SDK for Cross-platform P2P Streaming."
 
   # This description is used to generate tags and improve search results.
@@ -134,6 +134,6 @@ Pod::Spec.new do |spec|
   spec.dependency 'PINCache', '~> 3.0'
   spec.dependency 'GCDWebServer', '~> 3.5'
   spec.dependency 'CocoaAsyncSocket', '~> 7.6'
-  spec.dependency 'WebRTCDatachannel', '= 0.0.1'
+  spec.dependency 'GoogleWebRTC', '= 1.1.31999'
 
 end
