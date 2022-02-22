@@ -30,8 +30,11 @@ NS_ASSUME_NONNULL_BEGIN
 /** WebRTC configuration. WebRTC配置 */
 @property(nonatomic, strong, nullable) RTCConfiguration *webRTCConfig;
 
-/** The address of signal server. 信令服务器地址 */
+/** The address of signal server. 主信令服务器地址 */
 @property(nonatomic, copy, nullable) NSString *wsSignalerAddr;
+
+/** The address of signal server. 备用信令服务器地址 */
+@property(nonatomic, copy, nullable) NSString *wsSignalerAddrBackup;
 
 /** The address of tracker server. tracker服务器地址 */
 @property(nonatomic, copy, nullable) NSString *announce;
@@ -109,6 +112,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** The path to the log files, default is Library/Caches/Logs/ . 日志文件的存储路径，默认路径是 Library/Caches/Logs/ */
 @property(nonatomic, copy) NSString *logFilePath;
+
+/** Make a preflight request to online Geo IP database provider to get ASN, only work for live mode. 直播模式下向在线IP数据库请求ASN等信息，从而获得更准确的调度 */
+@property(nonatomic, assign) BOOL geoIpPreflight;
 
 @property(nonatomic, copy) NSString *alternativeTrackerIp;
 
