@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "SwarmCloudSDK"
-  spec.version      = "2.4.1"
+  spec.version      = "2.5.0"
   spec.summary      = "SwarmCloud iOS SDK for Cross-platform P2P Streaming."
 
   # This description is used to generate tags and improve search results.
