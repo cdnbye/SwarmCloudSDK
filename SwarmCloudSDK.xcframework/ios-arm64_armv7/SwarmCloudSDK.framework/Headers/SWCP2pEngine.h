@@ -10,6 +10,11 @@
 #import "SWCP2pConfig.h"
 #import "SWCByteRange.h"
 
+typedef NS_ENUM(NSInteger, SWCMimeType) {
+    SWCMimeTypeUnknown = 0,
+    SWCMimeTypeM3U8,
+};
+
 NS_ASSUME_NONNULL_BEGIN
 
 typedef NSString * _Nonnull (^SegmentId) (NSString * _Nonnull streamId, NSNumber *sn, NSString * _Nonnull segmentUrl, SWCRange byteRange);
@@ -69,13 +74,13 @@ extern NSString *const kP2pEngineDidReceiveStatistics ;
 - (void)startWithToken:(NSString *)token p2pConfig:(nullable SWCP2pConfig *)config error:(NSError **)error NS_SWIFT_NAME(start(token:p2pConfig:error:));
 
 /**
- Get the shared instance of CBP2pEngine.
- Please call [CBP2pEngine initWithToken: andP2pConfig:] before calling it.
+ Get the shared instance of P2pEngine.
+ Please call [P2pEngine initWithToken: andP2pConfig:] before calling it.
  */
 + (instancetype)sharedInstance;
 
 /**
- Get parsed local stream url by passing the original stream url(m3u8) to CBP2pEngine instance.
+ Get parsed local stream url by passing the original stream url(m3u8) to P2pEngine instance.
  
  @param url  The original stream url(m3u8).
  @result A parsed local http url.
@@ -83,13 +88,23 @@ extern NSString *const kP2pEngineDidReceiveStatistics ;
 - (NSURL *)parseStreamURL:(NSURL *)url NS_SWIFT_NAME(parse(streamURL:));
 
 /**
-Get parsed local stream url by passing the original stream url(m3u8) to CBP2pEngine instance.
+Get parsed local stream url by passing the original stream url(m3u8) to P2pEngine instance.
 
 @param url  The original stream url(m3u8).
  @param videoId  video Id for the given url.
 @result A parsed local http url.
 */
 - (NSURL *)parseStreamURL:(NSURL *)url withVideoId:(NSString *)videoId NS_SWIFT_NAME(parse(streamURL:videoId:));
+
+/**
+Get parsed local stream url by passing the original stream url(m3u8) to P2pEngine instance.
+
+@param url  The original stream url(m3u8).
+@param videoId  video Id for the given url.
+@param mimeType If your URI doesn’t end with .m3u8, you can pass SWCMimeTypeM3U8 to the third parameter of parseStreamUrl to explicitly indicate the type of the content.
+@result A parsed local http url.
+*/
+- (NSURL *)parseStreamURL:(NSURL *)url withVideoId:(NSString *)videoId mimeType:(SWCMimeType)mimeType NS_SWIFT_NAME(parse(streamURL:videoId:mimeType:));
 
 /**
  Stop p2p and free used resources.
@@ -102,9 +117,21 @@ Get parsed local stream url by passing the original stream url(m3u8) to CBP2pEng
 - (void)restartP2p;
 
 /**
+ Disabled P2P at runtime
+ */
+- (void)disableP2p;
+
+/**
+ Enable P2P at runtime
+ */
+- (void)enableP2p;
+
+/**
 Stop P2P and shut down the proxy server.
 */
 - (void)shutdown;
+
+- (NSNumber *)currentLevel;
 
 @end
 

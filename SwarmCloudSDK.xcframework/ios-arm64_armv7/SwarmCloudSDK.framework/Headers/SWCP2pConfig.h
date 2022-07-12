@@ -51,9 +51,6 @@ NS_ASSUME_NONNULL_BEGIN
 /** The port for local http server. Hls本地代理服务器的端口号 */
 @property(nonatomic, assign) NSInteger localPortHls;
 
-/** The port for local http server. Mp4本地代理服务器的端口号 */
-//@property(nonatomic, assign) NSInteger localPortMp4;
-
 /** Max download timeout for WebRTC datachannel. datachannel下载二进制数据的最大超时时间 */
 @property(nonatomic, assign) NSTimeInterval dcDownloadTimeout;
 
@@ -81,10 +78,6 @@ NS_ASSUME_NONNULL_BEGIN
 /** Set http headers while requesting ts and m3u8. 设置请求ts和m3u8时的http headers */
 @property(nonatomic, copy) NSDictionary *httpHeadersForHls;
 
-/** Not available now. 暂不可用 */
-//@property(nonatomic, copy) NSDictionary *httpHeadersForMp4;
-//@property(nonatomic, copy) NSDictionary *httpHeadersForFile;
-
 /** Trickle ICE is an optimization of the ICE specification for NAT traversal. NAT穿越时采用rickle ICE策略 */
 @property(nonatomic, assign) BOOL trickleICE;
 
@@ -96,10 +89,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** Internal API. 内部API */
 @property(nonatomic, assign) BOOL scheduledBySegId;
-
-//@property(nonatomic, assign) NSUInteger pieceLengthForMp4;
-
-//@property(nonatomic, assign) NSUInteger maxSubscribeLevel;
 
 /** All media suffixes that allow P2P transmission. 允许进行P2P传输的所有媒体文件后缀 */
 @property(nonatomic, copy) NSArray<NSString *> *hlsMediaFiles;
