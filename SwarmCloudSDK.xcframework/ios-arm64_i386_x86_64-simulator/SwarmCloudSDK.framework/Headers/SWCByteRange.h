@@ -13,7 +13,7 @@ typedef struct SWCRange {
     long long end;
 } SWCRange;
 
-static const long long SWCNotFound = LONG_LONG_MAX;
+static const long long SWCNotFound = 1000000000000;
 
 BOOL SWCRangeIsFull(SWCRange range);                   //  compare to SWCMakeRange(0, KTVHCNotFound)
 BOOL SWCRangeIsVaild(SWCRange range);                  // compare to SWCMakeRange(SWCNotFound, SWCNotFound)
